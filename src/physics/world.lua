@@ -51,7 +51,7 @@ end
 --given a rect returns items, len; table, integer
 function world:queryRect(x,y,w,h)
   local cl,ct,cw,ch = grid.toCellRect(self.cellsize,x,y,w,h)
-  local dict = grid.dictItemsInCellRect(self,cl,ct,cw,ch)
+  local dict = grid.getItemsInRect(self,cl,ct,cw,ch)
   local items,len = {}, 0
   local rect
   for i, _ in pairs(dict) do
@@ -66,7 +66,7 @@ end
 
 function world:queryPoint(x,y)
   local cx,cy = grid.toCell(self.cellSize,x,y)
-  local dict = grid.dictItemsInCellRect(self.cellSize,cx,cy,1,1)
+  local dict = grid.getItemsInRect(self.cellSize,cx,cy,1,1)
   local items, len = {}, 0
   local rect
   for i, _ in pairs(dict) do

@@ -5,8 +5,6 @@ require "src.lovedebug"
 local function kill()
 	love.event.quit()
 end
-
-
 function love.load()
 	require "src.required"
 	mem = microem:new()
