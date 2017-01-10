@@ -99,7 +99,9 @@ local grid = {
   getItemsInRect = getItemsInRect,
   toCell = toCell,
   toWorld = toWorld,
-  toCellRect = toCellRect
+  toCellRect = toCellRect,
+  traverse = traverse,
+  getCellsAlongSegment = getCellsAlongSegment
 }
 
 return grid

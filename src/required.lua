@@ -9,6 +9,6 @@ cam = require "src.lib.cam"
 camera = require "src.lib.camera"
 inputSystem = require "src.systems.inputsys"
 state = require "src.lib.fms"
-world = require "src.physics.world"
+makeWorld = require "src.physics.world"
 newPlayable = require "src.entities.player"
 end

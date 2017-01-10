@@ -80,37 +80,38 @@ function world:queryPoint(x,y)
 end
 
 function world:update(entity)
-  local x1,y1,w1,h1 = self:getRect(entity)
-  local r = entity:getComponents({"rect"})
+  local x1,y1,w1,h1 = self:getRect(entity) -- the world stores original position data
+  local r = entity:getComponents({"rect"}) -- grab current data from the entity
   local x2,y2,w2,h2 = r.x,r.y,r.width,r.height
-  if x1~=x2 or y1~=y2 or w1~=w2 or h1~=h2 then
-    local cs = self.cellSize
+  if x1~=x2 or y1~=y2 or w1~=w2 or h1~=h2 then -- if old/new values differ
+    local cs = self.cellSize -- find out whether the entity has left/entered cell
     local cl1,ct1,cw1,ch1 = grid.toCellRect(cs,x1,y1,w1,h1)
     local cl2,ct2,cw2,ch2 = grid.toCellRect(cs, x2,y2,w2,h2)
     if cl1~=cl2 or ct1~=ct2 or cw1~=cw2 or ch1~=ch2 then
       local cr1,cb1 = cl1+cw1-1, ct1+ch1-1
       local cr2,cb2 = cl2+cw2-1, ct2+ch2-1
       local cyOut
-
+-- leaving a cell
       for cy = ct1,cb1 do
         cyout = cy<ct2 or cy>cb2
         for cx = cl1,cr1 do
           if cyout or cx<cl2 or cx>cr2 then
-            grid.removeItemFromCell(self,entity,cx,cy)
+            grid.removeItem(self,entity,cx,cy)
           end
         end
       end
-
+-- entering a cell
       for cy = ct2,cb2 do
         cyout = cy<ct1 or cy>cb1
         for cx = cl2,cr2 do
           if cyout or cx<cl1 or cx>cr1 then
-            grid.addItemToCell(self,entity,cx,cy)
+            grid.addItem(self,entity,cx,cy)
           end
         end
       end
     end
-    local rect = self.rects[entity]
+
+    local rect = self.rects[entity] -- update world data for entity
     rect.x,rect.y,rect.w,rect.h = x2,y2,w2,h2
   end
 end
