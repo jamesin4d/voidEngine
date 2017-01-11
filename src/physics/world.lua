@@ -9,6 +9,25 @@ function world:itemCount()
   return len
 end
 
+function world:cellCount()
+  local c = 0
+  for _,row in pairs(self.rows) do
+    for _,_ in pairs(row) do
+      c = c+1
+    end
+  end
+  return c
+end
+
+function world:getItems()
+  local items, len = {}, 0
+  for i, _ in pairs(self.rects) do
+    len = len+1
+    items[len] = i
+  end
+  return items,len
+end
+
 function world:has(entity)
   return not not self.rects[entity]
 end

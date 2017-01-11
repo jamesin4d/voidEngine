@@ -3,13 +3,13 @@
 -- like seriously, how the shit do you make a game.
 local nextLevel = 'numbtwo'
 local levGen = require "src.levelGen"
-local lvl = levGen(100,16)
+
 world = makeWorld(16)
+local lvl = levGen(100,16,world)
 items = {}
 for _,v in pairs(lvl) do table.insert(items,v) end
-player = newPlayable(50,50,12,12)
+player = newPlayable(world,50,50,12,12)
 table.insert(items,player)
-for _,v in pairs(items) do world:add(v) end
 
 
 function love.update(dt)

@@ -1,6 +1,6 @@
 local block = require "src.entities.block"
 
-local function newLevel(size,cs)
+local function newLevel(size,cs,world)
   local cell = cs or 32
   local lx = {5,6,5,6}
   local ly = {5,5,6,6}
@@ -15,7 +15,7 @@ local function newLevel(size,cs)
   for i=1, #lx do
     local bx,by = lx[i]*cell,ly[i]*cell
     local bw,bh = cell,cell
-    local bl = block(bx,by,bw,bh)
+    local bl = block(world,bx,by,bw,bh)
     table.insert(level,bl)
   end
   return level
@@ -25,7 +25,7 @@ local function level(args)
   local cell = 32
   local ww = love.graphics.getWidth()
   local hh = love.graphics.getHeight()
-  
+
 end
 
 return newLevel
