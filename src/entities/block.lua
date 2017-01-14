@@ -1,12 +1,13 @@
-local colorComp = require "src.components.colorComponent"
-local rectComp = require "src.components.rectComponent"
-
-local function newBlock(x,y,w,h)
+local function newBlock(world,x,y,w,h)
   local block = {
+    world = world,
+    vel = velocityComp(),
     rect = rectComp(x,y,w,h),
-    color = colorComp(180,180,180)
+    color = colorComp(180,180,180),
+    collider = colliderComp({"solid"})
   }
   encos.createEntity(block)
-  return block 
+  mem:emit("entityCreate",block)
+  return block
 end
 return newBlock

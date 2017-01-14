@@ -1,18 +1,15 @@
-local colorComp = require "src.components.colorComponent"
-local velocityComp = require "src.components.velocityComponent"
-local rectComp = require "src.components.rectComponent"
-local colliderComp = require "src.components.collisionType"
-
-local function newPlayable(x,y,w,h)
+local function newPlayable(world,x,y,w,h)
   --body...
   local player = {
+    world = world,
     vel = velocityComp(),
     rect = rectComp(x,y,w,h),
     control = true,
     color = colorComp(130,130,80),
-    collider = colliderComp("kinetic")
+    collider = colliderComp({"solid","player"})
  }
  encos.createEntity(player)
+ mem:emit("entityCreate",player)
   return player
 end
 return newPlayable

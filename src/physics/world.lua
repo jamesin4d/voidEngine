@@ -1,5 +1,5 @@
-local world = {}
-local wmt = {__index = world}
+local world = {} -- the world is essentially a grid instance
+local wmt = {__index = world} -- it handles spatial data
 local grid = require "src.physics.grid"
 local rectFunc = require "src.physics.rectFunctions"
 
@@ -7,6 +7,25 @@ function world:itemCount()
   local len = 0
   for _ in pairs(self.rects) do len = len + 1 end
   return len
+end
+
+function world:cellCount()
+  local c = 0
+  for _,row in pairs(self.rows) do
+    for _,_ in pairs(row) do
+      c = c+1
+    end
+  end
+  return c
+end
+
+function world:getItems()
+  local items, len = {}, 0
+  for i, _ in pairs(self.rects) do
+    len = len+1
+    items[len] = i
+  end
+  return items,len
 end
 
 function world:has(entity)
@@ -22,10 +41,8 @@ end
 function world:add(entity)
   local ent = self.rects[entity]
   if ent then error('entity already added') end
-
   local rect = entity:getComponents({"rect"})
   local x,y,w,h = rect.x,rect.y,rect.width,rect.height
-
   self.rects[entity] = {x=x,y=y,w=w,h=h}
   local cl,ct,cw,ch = grid.toCellRect(self.cellSize,x,y,w,h)
   for cy = ct, ct+ch-1 do
@@ -110,12 +127,10 @@ function world:update(entity)
         end
       end
     end
-
     local rect = self.rects[entity] -- update world data for entity
     rect.x,rect.y,rect.w,rect.h = x2,y2,w2,h2
   end
 end
-
 
 local function newWorld(cellSize)
   local cs = cellSize or 16
