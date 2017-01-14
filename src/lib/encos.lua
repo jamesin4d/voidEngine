@@ -6,12 +6,6 @@ local function addComponent(e,c,i) -- entity, component, instance
 	return e
 end
 
-local function printComponents(e, ...)
-	for i,v in ipairs(arg) do
-			print(v)
-		end
-end
-
 local function getComponentsTable(e,cs)
 	local values = {}
 	for i, c in ipairs(cs) do
@@ -27,7 +21,6 @@ local function getComponents(...) return unpack(getComponentsTable(...) or {}) e
 local entityPrototype = {
 	addComponent = addComponent,
 	getComponents = getComponents,
-	printComponents = printComponents,
 	getComponentsTable = getComponentsTable
 }
 

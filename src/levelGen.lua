@@ -1,9 +1,9 @@
 local block = require "src.entities.block"
 
 local function newLevel(size,cs,world)
-  local cell = cs or 32
+  local cell = cs or 16
   local lx = {5,6,5,6}
-  local ly = {5,5,6,6}
+  local ly = {4,4,5,5}
   local level = {}
   math.randomseed(os.time())
   for i = 1, size do
@@ -21,11 +21,26 @@ local function newLevel(size,cs,world)
   return level
 end
 
-local function level(args)
-  local cell = 32
+local function level(world)
   local ww = love.graphics.getWidth()
   local hh = love.graphics.getHeight()
-
+  local lvl = {
+  -- walls and ceiling
+  roof = block(world,0,0,ww,16),
+  wall1 = block(world,0,16,16,hh-16),
+  wall2 = block(world,ww-16,16,16,hh-16)
+}
+  local floorTiles = 16
+  for i = 0, floorTiles-1 do
+    local ft = block(world,i*ww/floorTiles,hh-16,ww/floorTiles,16)
+    table.insert(lvl,ft)
+  end
+  return lvl 
 end
 
-return newLevel
+local gen = {
+  newLevel = newLevel,
+  level = level
+}
+
+return gen
