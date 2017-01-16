@@ -14,6 +14,7 @@ local moveSystem = encos.createSystem(
 		-- local futureY = rect.y + vel.vy
 		-- call collisionSystem checking for collision using futureX position
 		-- if so, provide displacement vector, repeat for y-axis
+		detect(item)
 		rect.x = rect.x + vel.vx -- rect.x,rect.y = futureX, futureY
 		rect.y = rect.y + vel.vy
 	end
