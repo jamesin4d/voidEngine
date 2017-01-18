@@ -10,6 +10,7 @@ function cf:init(...)
   self.bullet = false
   self.pickup = false
   self.exit = false
+  self.colliding = false
   for _,i in ipairs(...) do
     local v = self[i]
     if v == nil then return end
