@@ -44,3 +44,12 @@ local function getSquareDistance(one,other)
   local dy = y1 - y2 + (h1 - h2)/2
   return dx*dx + dy*dy
 end
+
+return {
+	rectsIntersect = rectsIntersect,
+	isIntersecting = isIntersecting,
+	getSquareDistance = getSquareDistance,
+	minkowskyDifference = minkowskyDifference,
+	nearestCorner = nearestCorner,
+	containsPoint = containsPoint
+}

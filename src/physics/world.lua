@@ -67,17 +67,18 @@ end
 
 --given a rect returns items, len; table, integer
 function world:queryRect(x,y,w,h)
-  local cl,ct,cw,ch = grid.toCellRect(self.cellsize,x,y,w,h)
+  local cl,ct,cw,ch = grid.toCellRect(self.cellSize,x,y,w,h)
   local dict = grid.getItemsInRect(self,cl,ct,cw,ch)
   local items,len = {}, 0
   local rect
   for i, _ in pairs(dict) do
     rect = self.rects[i]
-    if rectFunc.rectsIntersect(x,y,w,h,rect.x,rect.y,rect.width,rect.height) then
+    if rectFunc.rectsIntersect(x,y,w,h,rect.x,rect.y,rect.w,rect.h) then
       len = len + 1
       items[len] = i
     end
   end
+
   return items, len
 end
 

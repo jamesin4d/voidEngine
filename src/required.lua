@@ -6,7 +6,7 @@ encos = require "src.lib.encos"
 
 moveSystem = require "src.systems.moveSys"
 drawSystem = require "src.systems.drawSys"
-collisionSystem = require "src.systems.collisionSys"
+detect = require "src.physics.collisionDetect"
 
 colorComp = require "src.components.colorComponent"
 velocityComp = require "src.components.velocityComponent"

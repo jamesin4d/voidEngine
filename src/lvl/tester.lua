@@ -4,7 +4,7 @@
 local nextLevel = 'numbtwo'
 local levGen = require "src.levelGen"
 
-local world = makeWorld(16)
+local world = makeWorld(32)
 local lvl = levGen.level(world)
 items = {}
 for _,v in pairs(lvl) do table.insert(items,v) end
@@ -16,7 +16,7 @@ function love.update(dt)
 	if love.keyboard.isDown("n") then mem:emit('toLevel',nextLevel) end
 	inputSystem(items,dt)
 	moveSystem(items)
-	collisionSystem(items)
+	detect(player)
 	camera.lookAt(player.rect.x,player.rect.y)
 end
 
@@ -24,7 +24,6 @@ function love.draw()
 	camera.draw(
 	function()
 		--camera.lookAt(player.rect.x,player.rect.y)
-		collisionSystem(items)
 		drawSystem(items)
 	end)
 	--drawSystem(items)

@@ -26,16 +26,16 @@ local function level(world)
   local hh = love.graphics.getHeight()
   local lvl = {
   -- walls and ceiling
-  roof = block(world,0,0,ww,16),
-  wall1 = block(world,0,16,16,hh-16),
-  wall2 = block(world,ww-16,16,16,hh-16)
+  roof = block(world,0,0,ww,32),
+  wall1 = block(world,0,32,32,hh-32),
+  wall2 = block(world,ww-32,32,32,hh-32)
 }
   local floorTiles = 16
   for i = 0, floorTiles-1 do
-    local ft = block(world,i*ww/floorTiles,hh-16,ww/floorTiles,16)
+    local ft = block(world,i*ww/floorTiles,hh-32,ww/floorTiles,32)
     table.insert(lvl,ft)
   end
-  return lvl 
+  return lvl
 end
 
 local gen = {
