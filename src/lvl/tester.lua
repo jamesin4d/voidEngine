@@ -24,7 +24,7 @@ function love.draw()
 	camera.draw(
 	function()
 		drawSystem(items)
-		love.graphics.print(love.timer.getFPS(),40,40)
-		love.graphics.print(tostring(player.collider.colliding),40,52)
+		--love.graphics.print(love.timer.getFPS(),40,40)
+		--love.graphics.print(tostring(player.collider.colliding),40,52)
 	end)
 end
