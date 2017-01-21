@@ -3,8 +3,8 @@ local function clamp(x,minx,maxx)
 end
 
 local moveSystem = encos.createSystem(
-	{'vel','rect','collider'},
-	function(item,vel,rect,collider)
+	{'vel','rect','collider','world'},
+	function(item,vel,rect,collider,world)
 		local mv = vel.maxVel or 10
 		clamp(vel.vx,-mv,mv)
 		clamp(vel.vy,-mv,mv)
@@ -12,6 +12,7 @@ local moveSystem = encos.createSystem(
 		detect(item, "x") -- check for collisions on x
 		rect.y = rect.y + vel.vy -- rinse
 		detect(item, "y") -- repeat.
+		world:update(item)
 		end
 )
 return moveSystem

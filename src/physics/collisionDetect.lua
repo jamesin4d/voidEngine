@@ -1,7 +1,6 @@
 local rectFunc = require "src.physics.rectFunctions"
 local resolve = require "src.physics.collisionResolve"
 
-
 local function detect(item,vector)
   local rect,vel,world,collider = item:getComponents({"rect","vel","world","collider"})
   if vel.vx ~= 0 or vel.vy ~= 0 then collider.moving = true end

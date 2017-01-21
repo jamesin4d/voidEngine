@@ -28,6 +28,10 @@ function world:getItems()
   return items,len
 end
 
+function world:getEntities()
+  return self.entities 
+end
+
 function world:has(entity)
   return not not self.rects[entity]
 end
@@ -41,6 +45,7 @@ end
 function world:add(entity)
   local ent = self.rects[entity]
   if ent then error('entity already added') end
+  table.insert(self.entities,entity)
   local rect = entity:getComponents({"rect"})
   local x,y,w,h = rect.x,rect.y,rect.width,rect.height
   self.rects[entity] = {x=x,y=y,w=w,h=h}
@@ -57,6 +62,7 @@ function world:remove(entity)
   local rect = entity:getComponents({"rect"})
   local x,y,w,h = rect.x,rect.y,rect.width,rect.height
   self.rects[entity] = nil
+  --self.entities[entity] = nil
   local cl,ct,cw,ch = grid.toCellRect(self.cellSize, x,y,w,h)
   for cy = ct, ct+ch-1 do
     for cx = cl, cl+cw-1 do
@@ -138,6 +144,7 @@ local function newWorld(cellSize)
   local wld = setmetatable({
     cellSize = cs,
     rects = {},
+    entities = {},
     rows = {},
     nonEmptyCells = {},
   }, wmt)

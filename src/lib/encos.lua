@@ -18,13 +18,13 @@ end
 
 local function getComponents(...) return unpack(getComponentsTable(...) or {}) end
 
-local entityPrototype = {
+local protoEntity = {
 	addComponent = addComponent,
 	getComponents = getComponents,
 	getComponentsTable = getComponentsTable
 }
 
-local function createEntity(e) return setmetatable(e or {},{__index = entityPrototype}) end
+local function createEntity(e) return setmetatable(e or {},{__index = protoEntity}) end
 
 -- local bitchingSystem = createSystem({},function()end)
 local function createSystem(cs, process)
@@ -54,13 +54,9 @@ local function each(es, cs)
     end
   end
 end
-
-return {
-  createEntity = createEntity,
-  addComponent = addComponent,
-	printComponents	= printComponents,
-  getComponents = getComponents,
-  getComponentsTable = getComponentsTable,
+-- skunk the blunderbuss to numb the
+return { -- public interface
+  createEntity = createEntity,-- exceed the threshold for complexities mental figure eights
   createSystem = createSystem,
   each = each,
 }

@@ -6,17 +6,13 @@ local levGen = require "src.levelGen"
 
 local world = makeWorld(16)
 local lvl = levGen.level(world)
-items = {}
-for _,v in pairs(lvl) do table.insert(items,v) end
 player = newPlayable(world,50,50,12,12)
-table.insert(items,player)
-
+local items = world:getEntities()
 
 function love.update(dt)
 	if love.keyboard.isDown("n") then mem:emit('toLevel',nextLevel) end
 	inputSystem(items,dt)
 	moveSystem(items)
-	for e,w in encos.each(items, {"world"}) do w:update(e) end
 	camera.lookAt(player.rect.x,player.rect.y)
 end
 
