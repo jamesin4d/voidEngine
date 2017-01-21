@@ -25,18 +25,27 @@ local function level(world)
   local ww = love.graphics.getWidth()
   local hh = love.graphics.getHeight()
   local cs = world.cellSize
-  local lvl = {
-  -- walls and ceiling
-  roof = block(world,0,0,ww,cs),
-  wall1 = block(world,0,cs,cs,hh-cs),
-  wall2 = block(world,ww-cs,cs,cs,hh-cs)
-}
+  local wallLeft = 16
+  for i = 0, wallLeft-1 do
+    local ft = block(world,0,i*hh/wallLeft,cs,hh/wallLeft)
+  end
+  local wallRight = 16
+  for i = 0, wallRight-1 do
+    local ft = block(world,ww-cs,i*hh/wallRight,cs,hh/wallRight)
+  end
+  local roofTiles = 16
+  for i = 0, roofTiles-1 do
+    local rt = block(world,i*ww/roofTiles,0,ww/roofTiles,cs)
+  end
   local floorTiles = 16
   for i = 0, floorTiles-1 do
     local ft = block(world,i*ww/floorTiles,hh-cs,ww/floorTiles,cs)
-    table.insert(lvl,ft)
   end
-  return lvl
+  local randomBlocks = 32
+  for i = 0, randomBlocks-1 do
+    local rx,ry = math.random(cs*2, ww-(cs*3)),math.random(cs*2, hh-(cs*3))
+    local rb = block(world,rx,ry,cs*2,cs*2)
+  end
 end
 
 local gen = {

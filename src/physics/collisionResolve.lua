@@ -34,8 +34,11 @@ local function resolveY(item,other)
 end
 
 local function resolve(item,other,vector)
-  if vector == "x" then resolveX(item,other)
-  elseif vector == "y" then resolveY(item,other)
+  if not item.collider then return end
+  if item.collider.solid and other.collider.solid then
+    if vector == "x" then resolveX(item,other)
+    elseif vector == "y" then resolveY(item,other)
+    end
   end
 end
 
