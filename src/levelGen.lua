@@ -25,6 +25,7 @@ local function level(world)
   local ww = love.graphics.getWidth()
   local hh = love.graphics.getHeight()
   local cs = world.cellSize
+  math.randomseed(love.timer.getDelta())
   local wallLeft = 16
   for i = 0, wallLeft-1 do
     local ft = block(world,0,i*hh/wallLeft,cs,hh/wallLeft)
@@ -43,8 +44,9 @@ local function level(world)
   end
   local randomBlocks = 32
   for i = 0, randomBlocks-1 do
+    local rw,rh = math.random(16,64), math.random(16,64)
     local rx,ry = math.random(cs*2, ww-(cs*3)),math.random(cs*2, hh-(cs*3))
-    local rb = block(world,rx,ry,cs*2,cs*2)
+    local rb = block(world,rx,ry,rw,rh)
   end
 end
 

@@ -29,7 +29,7 @@ function world:getItems()
 end
 
 function world:getEntities()
-  return self.entities 
+  return self.entities
 end
 
 function world:has(entity)
@@ -46,8 +46,7 @@ function world:add(entity)
   local ent = self.rects[entity]
   if ent then error('entity already added') end
   table.insert(self.entities,entity)
-  local rect = entity:getComponents({"rect"})
-  local x,y,w,h = rect.x,rect.y,rect.width,rect.height
+  local x,y,w,h = entity:getComponents({"rect"}):getRect()
   self.rects[entity] = {x=x,y=y,w=w,h=h}
   local cl,ct,cw,ch = grid.toCellRect(self.cellSize,x,y,w,h)
   for cy = ct, ct+ch-1 do
@@ -59,16 +58,15 @@ function world:add(entity)
 end
 
 function world:remove(entity)
-  local rect = entity:getComponents({"rect"})
-  local x,y,w,h = rect.x,rect.y,rect.width,rect.height
-  self.rects[entity] = nil
-  --self.entities[entity] = nil
+  local x,y,w,h = entity:getComponents({"rect"}):getRect()
   local cl,ct,cw,ch = grid.toCellRect(self.cellSize, x,y,w,h)
   for cy = ct, ct+ch-1 do
     for cx = cl, cl+cw-1 do
       grid.removeItem(self,entity,cx,cy)
     end
   end
+  self.rects[entity] = nil
+  for k,v in pairs(self.entities) do if v == entity then table.remove(self.entities,k) end end 
 end
 
 --given a rect returns items, len; table, integer
@@ -105,8 +103,7 @@ end
 
 function world:update(entity)
   local x1,y1,w1,h1 = self:getRect(entity) -- the world stores original position data
-  local r = entity:getComponents({"rect"}) -- grab current data from the entity
-  local x2,y2,w2,h2 = r.x,r.y,r.width,r.height
+  local x2,y2,w2,h2 = entity:getComponents({"rect"}):getRect() -- get current data
   if x1~=x2 or y1~=y2 or w1~=w2 or h1~=h2 then -- if old/new values differ
     local cs = self.cellSize -- find out whether the entity has left/entered cell
     local cl1,ct1,cw1,ch1 = grid.toCellRect(cs,x1,y1,w1,h1)

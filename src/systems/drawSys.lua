@@ -10,6 +10,7 @@ local drawSystem = encos.createSystem(
 		love.graphics.setColor(lr, lg, lb)
 		love.graphics.rectangle('line', l, t, w, h)
 		love.graphics.reset()
+		
 	end
 )
 return drawSystem

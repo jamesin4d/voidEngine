@@ -3,7 +3,7 @@ local function newBlock(world,x,y,w,h)
     world = world,
     vel = velocityComp(),
     rect = rectComp(x,y,w,h),
-    color = colorComp(180,180,180),
+    color = colorComp(180,80,80),
     collider = colliderComp({"solid"})
   }
   encos.createEntity(block)

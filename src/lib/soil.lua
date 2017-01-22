@@ -4,9 +4,7 @@ Class.__index = Class
 function Class:init() end
 function Class:extend(name)
   local object = {}
-  for k,v in pairs(self) do
-    if k:find("__") == 1 then object[k] = v end
-  end
+  for k,v in pairs(self) do if k:find("__") == 1 then object[k] = v end end
   object.__index = object
   object.super = self
   object.name = name
