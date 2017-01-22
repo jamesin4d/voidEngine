@@ -3,10 +3,12 @@ do
 class = require "src.lib.soil"
 microem = require "src.lib.microem"
 encos = require "src.lib.encos"
+removeWithClick = require "src.removeEntityWithInput"
 
-moveSystem = require "src.systems.moveSys"
+moveSystem = require "src.physics.moveSys"
 drawSystem = require "src.systems.drawSys"
 detect = require "src.physics.collisionDetect"
+
 
 colorComp = require "src.components.colorComponent"
 velocityComp = require "src.components.velocityComponent"

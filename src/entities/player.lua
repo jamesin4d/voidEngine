@@ -5,7 +5,7 @@ local function newPlayable(world,x,y,w,h)
     vel = velocityComp(),
     rect = rectComp(x,y,w,h),
     control = true,
-    color = colorComp(130,130,80),
+    color = colorComp(130,130,255),
     collider = colliderComp({"solid","player"})
  }
  encos.createEntity(player)

@@ -17,8 +17,10 @@ local function newDebris(world,x,y)
       vx = rvx,
       vy = rvy,
       maxVel = 15
-    }
-  }
+    }}
+    encos.createEntity(deb)
+    mem:emit('entityCreate',deb)
+    return deb
 end
 
 return newDebris
