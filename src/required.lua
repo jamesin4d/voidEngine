@@ -21,4 +21,6 @@ inputSystem = require "src.systems.inputsys"
 state = require "src.lib.fms"
 makeWorld = require "src.physics.world"
 newPlayable = require "src.entities.player"
+newDebris = require "src.entities.debris"
+lifetimeCounter = require "src.systems.lifetimeCounter"
 end
