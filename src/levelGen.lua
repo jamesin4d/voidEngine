@@ -42,7 +42,7 @@ local function level(world)
   for i = 0, floorTiles-1 do
     local ft = block(world,i*ww/floorTiles,hh-cs,ww/floorTiles,cs)
   end
-  local randomBlocks = 32
+  local randomBlocks = 5
   for i = 0, randomBlocks-1 do
     local rw,rh = math.random(16,64), math.random(16,64)
     local rx,ry = math.random(cs*2, ww-(cs*3)),math.random(cs*2, hh-(cs*3))

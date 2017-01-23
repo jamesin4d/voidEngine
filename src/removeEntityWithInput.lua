@@ -4,7 +4,9 @@ local rectFunc = require "src.physics.rectFunctions"
 local removeWithClick = encos.createSystem(
   {"rect","world"},
   function(item,rect,world)
-    if love.mouse.isDown(1) and rectFunc.containsPoint(rect.x,rect.y,rect.width,rect.height,love.mouse.getPosition()) then world:remove(item) end
+    if love.mouse.isDown(1) and rectFunc.containsPoint(rect.x,rect.y,rect.width,rect.height,love.mouse.getPosition()) then
+      local deb = newDebris(world,love.mouse.getPosition())
+      world:remove(item) end
    end
 )
 return removeWithClick

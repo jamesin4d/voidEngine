@@ -10,8 +10,8 @@ player = newPlayable(world,50,50,12,12)
 local items = world:getEntities()
 
 function love.update(dt)
-	local items = world:getEntities()
 	if love.keyboard.isDown("n") then mem:emit('toLevel',nextLevel) end
+	lifetimeCounter(items)
 	inputSystem(items,dt)
 	moveSystem(items)
 	removeWithClick(items)
@@ -19,7 +19,6 @@ function love.update(dt)
 end
 
 function love.draw()
-	local items = world:getEntities()
 	camera.draw(
 	function()
 		drawSystem(items)

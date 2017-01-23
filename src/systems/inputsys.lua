@@ -1,8 +1,10 @@
 --inputSystem(items,dt)
+local spawnDebris = require "src.entities.spawnDebris"
 -- this is implemented here to make easy use of dt
 local function inputSystem(items, dt)
   for item, vel in encos.each(items,{'vel','control'}) do
     local kb = love.keyboard.isDown
+    if kb("w") or kb("s") or kb("d") or kb("a") then spawnDebris(1,item.world,item.rect:center()) end
     if kb('escape') then
   		mem:emit('quit')
   	end
