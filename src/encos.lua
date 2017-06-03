@@ -56,7 +56,7 @@ local function each(es, cs)
 end
 -- skunk the blunderbuss to numb the
 return { -- public interface
-  createEntity = createEntity,-- exceed the threshold for complexities mental figure eights
+  createEntity = createEntity,-- exceed the threshold for complexities with mental figure eights
   createSystem = createSystem,
   each = each,
 }

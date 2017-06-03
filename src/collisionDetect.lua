@@ -1,5 +1,5 @@
-local rectFunc = require "src.physics.rectFunctions"
-local resolve = require "src.physics.collisionResolve"
+local rectFunc = require "src.rectFunctions"
+local resolve = require "src.collisionResolve"
 
 local function detect(item,vector)
   local rect,vel,world,collider = item:getComponents({"rect","vel","world","collider"})
@@ -15,7 +15,7 @@ local function detect(item,vector)
   for i,v in pairs(others) do
     if v ~= item then
       local collision = rectFunc.isIntersecting(item,v)
-      if collision == false then item.collider.colliding = false end
+      if collision == false then collider.colliding = false end
       if collision then
         collider.colliding = true
         resolve(item,v,vector)

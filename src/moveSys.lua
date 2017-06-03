@@ -1,10 +1,12 @@
+local detect = require "src.collisionDetect"
+
 local function clamp(x,minx,maxx)
 	return x < minx and minx or (x > maxx and maxx or x)
 end
 
 local moveSystem = encos.createSystem(
-	{'vel','rect','collider','world'},
-	function(item,vel,rect,collider,world)
+	{'vel','rect','world'},
+	function(item,vel,rect,world)
 		local mv = vel.maxVel or 10
 		clamp(vel.vx,-mv,mv)
 		clamp(vel.vy,-mv,mv)

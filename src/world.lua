@@ -1,8 +1,7 @@
 -- reworking world to remove grid dependancy
 local world = {} -- the world
 local wmt = {__index = world} -- it handles spatial data
---local grid = require "src.physics.grid"
-local rectFunc = require "src.physics.rectFunctions"
+local rectFunc = require "src.rectFunctions"
 
 function world:itemCount()
   local len = 0

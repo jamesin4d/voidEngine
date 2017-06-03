@@ -4,11 +4,7 @@ local spawnDebris = require "src.entities.spawnDebris"
 local function inputSystem(items, dt)
   for item, vel in encos.each(items,{'vel','control'}) do
     local kb = love.keyboard.isDown
-    if kb("w") or kb("s") or kb("d") or kb("a") then spawnDebris(1,item.world,item.rect:center()) end
-    if kb('escape') then
-  		mem:emit('quit')
-  	end
-
+    if kb('escape') then mem:emit('quit') end
     if kb('w') then vel.vy = vel.vy - dt*(vel.vy>0 and vel.decel or vel.accel)
     elseif kb('s') then vel.vy = vel.vy + dt*(vel.vy<0 and vel.decel or vel.accel)
     else

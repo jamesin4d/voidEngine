@@ -1,4 +1,4 @@
-local encos = require "src.lib.encos"
+local encos = require "src.encos"
 local drawSystem = encos.createSystem(
 	{'rect','color'},
 	function(item,rect,color)
@@ -10,7 +10,7 @@ local drawSystem = encos.createSystem(
 		love.graphics.setColor(lr, lg, lb)
 		love.graphics.rectangle('line', l, t, w, h)
 		love.graphics.reset()
-		
+
 	end
 )
 return drawSystem
